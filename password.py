@@ -26,10 +26,10 @@ def verifier_mot_de_passe(mdp):
 while not verifier_mot_de_passe(mdp):
     print("Le mot de passe ne respecte pas les exigences de sécurité.")
     mdp = input("Choisissez un nouveau mot de passe : ")
-
+    
+mdp_encode = sha256(mdp.encode("utf-8")).hexdigest()
 
 with open("data.json", "a+") as mon_fichier:
-    mdp_encode = sha256(mdp.encode("utf-8")).hexdigest()
     if mdp_encode in mon_fichier.read():
         print("Le mot de passe existe déjà.")
     else:
